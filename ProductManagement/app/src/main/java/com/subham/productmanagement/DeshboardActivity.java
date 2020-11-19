@@ -64,7 +64,7 @@ public class DeshboardActivity extends AppCompatActivity implements ProductInfoA
     public void onUpdateClicked(Products products) {
 //        startActivity(new Intent(DeshboardActivity.this,UpdateProduct.class));
         Intent intent = new Intent(DeshboardActivity.this, UpdateProduct.class);
-        intent.putExtra("Product", (Serializable) products);
+        intent.putExtra("Product",products);
         startActivity(intent);
     }
 

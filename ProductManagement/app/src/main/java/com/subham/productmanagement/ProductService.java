@@ -20,4 +20,8 @@ public interface ProductService {
 
     @DELETE("delete/{id}/")
     Call<DeleteResponse> deleteProduct(@Path("id") int id);
+
+    @POST("addProduct/")
+    Call<AddProductResponse> UpdateProduct(@Body HashMap<String, Object> params);
+
 }

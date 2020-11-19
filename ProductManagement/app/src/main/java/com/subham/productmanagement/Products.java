@@ -1,10 +1,13 @@
 package com.subham.productmanagement;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 import java.util.stream.Stream;
 
-public class Products {
+public class Products implements Parcelable {
 
     public int id;
     public String name;
@@ -17,6 +20,25 @@ public class Products {
         this.quantity = quantity;
         this.price = price;
     }
+
+    protected Products(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        quantity = in.readString();
+        price = in.readInt();
+    }
+
+    public static final Creator<Products> CREATOR = new Creator<Products>() {
+        @Override
+        public Products createFromParcel(Parcel in) {
+            return new Products(in);
+        }
+
+        @Override
+        public Products[] newArray(int size) {
+            return new Products[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -50,4 +72,16 @@ public class Products {
         this.price = price;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(quantity);
+        dest.writeInt(price);
+    }
 }
